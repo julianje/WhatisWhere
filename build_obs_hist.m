@@ -1,6 +1,12 @@
 %returns a matrix with size(location) columns where each row is an observation history
-%This function requires the classcomb function. It is provided (as well as the licence) along with this code or can be obtained at http://www.mathworks.com/matlabcentral/fileexchange/10064
 function obs_hist = build_obs_hist(l,obsmat)
+	% Get possible observations the agent could have had given it's path.
+	%
+	% This function requires classcomb function. It is provided along with the code and can be obtained at http://www.mathworks.com/matlabcentral/fileexchange/10064
+	%
+	% ARGUMENTS:
+	% l[vector]			location the agent has been in.
+	% obsmat[matrix]	matrix indicating the possible observations an agent can have in each location (e.g., nothing when you're on a hallway).
 	l2=unique(l);
 	for i=1:length(l2),
 		hist{i}=find(obsmat(l2(i),:));
@@ -31,5 +37,3 @@ function obs_hist = build_obs_hist(l,obsmat)
 		end
 	end
 end
-%arrayfun syntax in case the loop can be avoided using this
-%arrayfun(@(inputvars) functionusinginputvars,inputvar1ARRAY,...,inputvarnARRAY)

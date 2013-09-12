@@ -1,5 +1,12 @@
-%Receives a POMDP and returns a list where vector i contains an array with observations that can occur in state i (regardless of location). This function helps optimize sparse pomdp structures. 
 function obsmat = build_config_obsmat(pomdp)
+	% Build array of possible observations that can happen in state i, independent of location
+	%
+	% Returns a list where vector i contains an array with observations that can occur in state i.
+	%
+	% ARGUMENTS:
+	% pomdp[struct]		pomdp structure
+	%
+	% This function is not essential but it optimizes sparse pomdp structures.
 	obsmat=zeros(pomdp.cs,length(pomdp.O(1,1,:)));
  	pl=floor(length(pomdp.T(1,1,:))/pomdp.cs);
 	for i=1:pomdp.cs,

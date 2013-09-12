@@ -1,7 +1,13 @@
-%Bayesian update of a belief distribution
-%given an action, an observation, and a POMDP
-%this should be read as: Under belief, I executed action and received observation from pomdp. Integrating this I now have newbelief
 function newbelief = updatebelief(belief, observation, action, pomdp)
+	% Update belief distribution using Bayes
+	%
+	%Intuitive read: Under belief belief, I took action action and got observation observation from pomdp. Now I have belief newbelief
+	%
+	% Arguments:
+	% belief[vector]		prior belief.
+	% observation[integer]	observation number from POMDP.
+	% action[integer]		action number from POMDP.
+	% pomdp[struct]			pomdp structure. See observer class for specifications.
 	newbelief=zeros(length(belief),1);
 	for i=1:length(belief),
 		%loop through states

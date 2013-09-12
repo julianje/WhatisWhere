@@ -1,11 +1,18 @@
-%a and o MUST have the same length (meaning you don't have the latest observation)
-
-%This function calculates the probability of an action history given the configuration of the environment and a history of observations
-%it receives an observation vector, a location vector, a scalar indicating the configuration state, a vector of actions, and a BToM (optimal policy structure) to see if actions are reasonable with the observations. The BToM structure should be built using the build_matlab_policy.pl perl policy that is provided with this code
 function p = p_act(a,o,belief,btom,pomdp,index)
-	%Run policy
+	% Calculate probability of an action sequence given the state of the world and a history of observations.
+	%
+	% Note: a and o must have the same length (meaning you don't have the latest observation)
+	% The BToM structure should be built using the build_matlab_policy.pl perl policy that is provided with this code
+	%
+	% ARGUMENTS:
+	% a[vector]			vector of actions the agent has taken
+	% o[vector]			vector of observation the agent has received
+	% belief[vector]	agent's belief that is being considered
+	% btom[struct]		optimal policies (as alpha vectors)
+	% pomdp[struct]		pomdp structure
+	% index[integer]	marker of which optimal policy file to use (depending on which belief is being considered.)
 	p=1;
-	%for each observation
+	%for each observation...
 	for ol = 2:length(o)
 		%took action a(ol-1) and got observation o(ol)
 		belief=updatebelief(belief,o(ol),a(ol-1),pomdp);
