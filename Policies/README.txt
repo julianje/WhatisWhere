@@ -14,20 +14,20 @@ pi_matlab_pomdp.m was build from i.POMDP using the build_matlab_pomdp.pl script 
 The prior beliefs in the simplex points are as follows (with some examples on how to read them):
 1  - uniform
 "Simplex point 1 has a uniform distribution over all possible cart configurations"
-2  - Bias: A->W(-)
-"Simplex point 2 is biased to believe that Cart A is in the West location and is closed"
-3  - Bias: A->W(+)
-"Simplex point 3 is biased to believe that Cart A is in the West location and is open"
-4  - Bias: A->N(-)
-5  - Bias: A->N(+)
-6  - Bias: A->E(-)
-7  - Bias: A->E(+)
-8  - Bias: B->W(-)
-9  - Bias: B->W(+)
-10 - Bias: B->N(-)
-11 - Bias: B->N(+)
-12 - Bias: B->E(-)
-13 - Bias: B->E(+)
+2  - Bias: A->W(+)
+"Simplex point 2 is biased to believe that Cart A is in the West location and is open"
+3  - Bias: A->W(-)
+"Simplex point 3 is biased to believe that Cart A is in the West location and is closed"
+4  - Bias: A->N(+)
+5  - Bias: A->N(-)
+6  - Bias: A->E(+)
+7  - Bias: A->E(-)
+8  - Bias: B->W(+)
+9  - Bias: B->W(-)
+10 - Bias: B->N(+)
+11 - Bias: B->N(-)
+12 - Bias: B->E(+)
+13 - Bias: B->E(-)
 14 - Bias: C->W
 15 - Bias: C->N
 "Simplex point 15 is biased to believe that cart C is in the North position (always open)"
