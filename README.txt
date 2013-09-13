@@ -50,28 +50,19 @@ States are ordered in the following way:
 
 This is the order in which beliefs are stored in the observer class (o.belief, o.belief_prior, and o.newbelief).
 
-To transform this into a vector like the ones storing human subject responses you can do
+To transform this into a vector like the ones storing human subject responses you can use observer.marginalizeOverPosition()
 
-margin=zeros(1,6);
-%A is on top and B on right (a6b8)
-margin(1)=sum(o.newbelief([5:8]));
-%A is on top and B on left (a6b3)
-margin(2)=sum(o.newbelief([1:4]));
-%B is on top and A on right (a8b6)
-margin(3)=sum(o.newbelief([17:20]));
-%B is on top and A on left (a3b6)
-margin(4)=sum(o.newbelief([9:12]));
-%B on left and A on right (a8b3)
-margin(5)=sum(o.newbelief([21:24]));
-%B on right and A on left (a3b8)
-margin(6)=sum(o.newbelief([13:16]));
+To replicate the data from CogSci2012 open replication.m and set the first three variables
+joint_inference % Set to 1 to do join observation-prior belief inference. to 0 to only infer observations
+path % Path number
+saveoutput % Save the output?
 
-To run the model do the following:
+To run the model on a different path:
 
 1. Load POMDP and policies (found in replication.m)
 	If you want joint belief-observation inference load all 22 policies. If you are only interested in observation inference only load the first policy (p1_btom).
 2. load the agent's possible beliefs. If you're doing joint belief-observation inference load them using
-	bp=false_belief_set2(),
+	bp=false_belief_set(),
 	otherwise, just make one variable
 	bp=ones(1,24)/24;
 3. Set a prior of the observer's beliefs on the agent's beliefs
@@ -93,4 +84,12 @@ To run the model do the following:
 	o.location_array=[19 4 5 6 5 4 3 2 1 -1 -1];
 8. Now have the observer watch the last chosen action and it will infer the state of the world.
 	o=o.observe_action(4);
-	
+
+To run the model on your own world:
+
+1. Build a .POMDP file using Tony's POMDP file format ( http://cs.brown.edu/research/ai/pomdp/examples/pomdp-file-spec.html )
+2. For each point in your prior belief simplex (i.e., the observer's belief about the agent's prior belief about the world), use a different .POMDP file that changes in the starting state belief distribution.
+3. Generate all matlab structures using Policies/perl_scripts/build_matlab_pomdp.pl
+4. Generate optimal policies for each POMDP through appl.
+5. Generate optimal policy matlab structures using Policies/perl_scripts/build_matlab_policy.pl
+6. Follow the "Run the model on a different path" instructions changing the food track planning files for yours.

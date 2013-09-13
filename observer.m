@@ -95,5 +95,23 @@
 				obj.newbelief=obj.newbelief/sum(sum(obj.newbelief));
 			end
 		end
+		function judgment=marginalizeOverPosition(obj)
+			% Transforms posterior (self.newbelief) into beliefs about configurations.
+			%
+			%The order is the same as presented in the Cogsci2012 plot.
+			tempjudg=sum(self.newbelief);
+			judgment=zeros(1,6);
+			%A is on top and B on right (a6b8)
+			judgment(1)=sum(tempjudg([5:8]));
+			%A is on top and B on left (a6b3)
+			judgment(2)=sum(tempjudg([1:4]));
+			%B is on top and A on right (a8b6)
+			judgment(3)=sum(tempjudg([17:20]));
+			%B is on top and A on left (a3b6)
+			judgment(4)=sum(tempjudg([9:12]));
+			%B on left and A on right (a8b3)
+			judgment(5)=sum(tempjudg([21:24]));
+			%B on right and A on left (a3b8)
+			judgment(6)=sum(tempjudg([13:16]));
 	end
 end
