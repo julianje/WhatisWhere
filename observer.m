@@ -99,7 +99,7 @@
 			% Transforms posterior (self.newbelief) into beliefs about configurations.
 			%
 			%The order is the same as presented in the Cogsci2012 plot.
-			tempjudg=sum(self.newbelief);
+			tempjudg=sum(obj.newbelief);
 			judgment=zeros(1,6);
 			%A is on top and B on right (a6b8)
 			judgment(1)=sum(tempjudg([5:8]));
